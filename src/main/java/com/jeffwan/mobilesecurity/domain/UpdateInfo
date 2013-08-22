@@ -1,0 +1,31 @@
+package com.jeffwan.mobilesecurity.domain;
+
+public class UpdateInfo{
+    private String verison;
+    private String description;
+    private String url;
+
+    public String getVerison() {
+        return verison;
+    }
+
+    public void setVerison(String verison) {
+        this.verison = verison;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+}
