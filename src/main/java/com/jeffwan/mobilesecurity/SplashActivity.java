@@ -5,11 +5,10 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.TextView;
+import com.jeffwan.mobilesecurity.engine.VersionInfoParser;
 
-import com.jeffwan.mobilesecurity.domain.UpdateInfo;
-import com.jeffwan.mobilesecurity.engine.UpdateInfoParser;
+import com.jeffwan.mobilesecurity.domain.VersionInfo;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +19,7 @@ import java.net.URL;
 public class SplashActivity extends Activity {
     private static final String TAG = "SplashActivity" ;
     private TextView tv_splash_version;
-    private UpdateInfo updateInfo;
+    private VersionInfo versionInfo;
 
     // package manger -> Android apk Manager
     private PackageManager pm;
@@ -29,11 +28,10 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        tv_splash_version = (TextView) this.findViewById(R.id.tv_splash_appname);
+        tv_splash_version = (TextView) this.findViewById(R.id.tv_splash_version);
 
         pm = getPackageManager();
         tv_splash_version.setText("Version"+ getAppVersion());
-
 
 
 
@@ -53,9 +51,9 @@ public class SplashActivity extends Activity {
                 int code = conn.getResponseCode();
                 if(code ==200){
                     InputStream is = conn.getInputStream();
-                    updateInfo = UpdateInfoParser.UpdateInfoParser(is);
+                    versionInfo = VersionInfoParser.getUpdateInfo(is);
 
-                    if(updateInfo!=null){
+                    if(versionInfo !=null){
                         Log.i(TAG,"parse successfully");
                     }else {
                         Log.i(TAG, "parse fail");
@@ -83,13 +81,14 @@ public class SplashActivity extends Activity {
 
         try {
 //          packageInfo = pm.getPackageInfo("com.jeffwan.mobilesecurity",0);
+            // we use packageName instead of package name
             packageInfo = pm.getPackageInfo(getPackageName(),0);
             String Version = packageInfo.versionName;
             return Version;
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            //can't reach
+            //can't reach  -- use when error never happen
             return "";
         }
     }

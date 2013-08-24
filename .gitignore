@@ -1,0 +1,7 @@
+*.zip
+*.rar
+*.class
+*.tmp
+*.iml
+*.build.gradle
+/build
