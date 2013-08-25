@@ -6,6 +6,6 @@
     <string name="hello_world">Hello world!</string>
 
 
-    <string name="serverUrl">http://jeffwan.net/versionInfo.xml</string>
+    <string name="serverUrl">http://www.jeffwan.net/versionInfo.xml</string>
 
 </resources>

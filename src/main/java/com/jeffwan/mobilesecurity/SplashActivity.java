@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
@@ -46,14 +47,15 @@ public class SplashActivity extends Activity {
 
 
     //define a message handler used for -- let child thread send message to main thread
-    private Handler handler = new Handler() {
+    protected Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what){
                 case PARSE_SUCCESS:
                     Toast.makeText(getApplicationContext(),"parse success",1).show();
-                    //check version on server & client
+                    // check version on server & client
+                    // only same or not same, no >=  becase the server version always lead you.
                     if (getAppVersion().equals(versionInfo.getVerison())){
                         Log.i(TAG,"version are same,going to home page");
                         loadHomeUI();
@@ -80,15 +82,25 @@ public class SplashActivity extends Activity {
                     break;
                 case SDCARD_ERROR:
                     Toast.makeText(getApplicationContext(),"sdcard error",1).show();
+                    loadHomeUI();
                     break;
                 case DOWNLOAD_SUCCESS:
                     Toast.makeText(getApplicationContext(),"downlaod success",1).show();
                     File file = (File) msg.obj;
+                    installApk(file);
                     break;
             }
 
         }
     };
+
+    private void installApk(File file) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setDataAndType(Uri.fromFile(file),"application/vnd.android.package-archive");
+        startActivity(intent);
+    }
 
 
     @Override
@@ -124,6 +136,8 @@ public class SplashActivity extends Activity {
                 if(code ==200){
                     InputStream is = conn.getInputStream();
                     versionInfo = VersionInfoParser.getUpdateInfo(is);
+
+                    //here we can not handle logic in a child Thread, so we send msg back to handle
 
                     if(versionInfo !=null){
                         Log.i(TAG,"parse successfully，server version"+versionInfo.getVerison());
@@ -196,11 +210,11 @@ public class SplashActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("update reminder");
         builder.setMessage(versionInfo.getDescription());
-        builder.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //downlaod new version, replace install
-                Log.i(TAG,"new version, download and replace install"+versionInfo.getUrl());
+                Log.i(TAG,"new version, download and replace install"+ versionInfo.getUrl());
                 pd = new ProgressDialog(SplashActivity.this);
                 pd.setTitle("update reminder");
                 pd.setMessage("downloading");
@@ -208,9 +222,9 @@ public class SplashActivity extends Activity {
                 pd.show(); // must in main thread
 
 
-                // show the old dialog for jianrong xing
-                new Thread(){
-                    public void run() {
+                // actually, app show the old dialog for compatible
+                new Thread() {
+                    public void run(){
                         Message msg = Message.obtain();
                         try {
                             File file = DownLoadManager.downLoad(versionInfo.getUrl(),"/sdcard/new.apk",pd);
@@ -228,12 +242,12 @@ public class SplashActivity extends Activity {
 
                         }finally {
                             handler.sendMessage(msg);
-                            pd.dismiss();//could in child thread
+                            pd.dismiss();//could in child thread, we can also dismiss in the DownaloadMangaer
                         }
                     }
                 }.start();
-
             }
+
         });
 
         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -242,6 +256,7 @@ public class SplashActivity extends Activity {
                 loadHomeUI();
             }
         });
+        builder.show();
 
     }
 
