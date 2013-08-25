@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -120,12 +121,25 @@ public class SplashActivity extends Activity {
 
     private class CheckVersion implements Runnable{
 
-        //if exists,get if not, create
-        Message msg = Message.obtain();
-        long startTime = System.currentTimeMillis();
-
         @Override
         public void run() {
+            SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
+            boolean update = sp.getBoolean("update",false);
+            if (!update){
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                loadHomeUI();
+                return;
+            }
+
+            //if exists,get if not, create
+            Message msg = Message.obtain();
+            long startTime = System.currentTimeMillis();
+
+
             try {
                 URL url = new URL(getResources().getString(R.string.serverUrl));
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

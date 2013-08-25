@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:jeffwan="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+    <com.jeffwan.mobilesecurity.ui.SettingView
+        android:id="@+id/sv_setting_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        jeffwan:title = "AutoUpdate Setting"
+        jeffwan:content_on = "AutoUpdate is on"
+        jeffwan:content_off = "AutoUpdate is off"
+        />
+
 
 </LinearLayout>

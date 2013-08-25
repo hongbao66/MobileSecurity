@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="60dip">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="header information"
+        android:id="@+id/tv_setting_view_title"
+        android:layout_marginLeft="8dip"
+        android:layout_marginTop="8dip"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="text information"
+        android:id="@+id/tv_setting_view_description"
+        android:layout_below="@id/tv_setting_view_title"
+        android:layout_marginLeft="8dip"
+        android:layout_marginTop="3dip"/>
+
+    <CheckBox
+        android:id="@+id/cb_setting_view_status"
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:checked="false"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/listview_devider"
+        />
+
+</RelativeLayout>
