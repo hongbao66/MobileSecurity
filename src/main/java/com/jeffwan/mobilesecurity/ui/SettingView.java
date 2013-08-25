@@ -52,11 +52,9 @@ public class SettingView extends RelativeLayout {
         a.recycle();
     }
 
-
     public void setTitle(String text) {
         tv_title.setText(text);
     }
-
 
     public void setDescription(String text) {
         tv_description.setText(text);
@@ -82,6 +80,5 @@ public class SettingView extends RelativeLayout {
         cb_status = (CheckBox) view.findViewById(R.id.cb_setting_view_status);
         this.setBackgroundResource(R.drawable.status_selector);
     }
-
 
 }
