@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class SplashActivity extends Activity {
     private static final int DOWNLOAD_SUCCESS = 5;
     private static final int DOWNLOAD_ERROR = 6;
     private static final int SDCARD_ERROR = 7;
+    private static final boolean DEVELOPER_MODE = true ;
     private TextView tv_splash_version;
     private VersionInfo versionInfo;
 
@@ -106,6 +108,22 @@ public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (DEVELOPER_MODE) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         tv_splash_version = (TextView) this.findViewById(R.id.tv_splash_version);

@@ -1,6 +1,7 @@
 package com.jeffwan.mobilesecurity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -14,10 +15,12 @@ import android.view.View;
 public abstract class BaseSetupActivity extends Activity {
     private static final String TAG = "BaseSetupActivity" ;
     private GestureDetector mGestureDetector;
+    protected SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sp = getSharedPreferences("config",MODE_PRIVATE);
         mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float v1, float v2) {
