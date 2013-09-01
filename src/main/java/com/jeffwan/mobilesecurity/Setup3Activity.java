@@ -16,19 +16,19 @@ public class Setup3Activity extends BaseSetupActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup3);
         et_setup3_safenumber = (EditText) this.findViewById(R.id.et_setup3_saftnumber);
-        et_setup3_safenumber.setText(sp.getString("saftnumber",""));
+        et_setup3_safenumber.setText(sp.getString("safenumber",""));
     }
 
     @Override
     public void showNext() {
         String safenumber =  et_setup3_safenumber.getText().toString().trim();
         if (TextUtils.isEmpty(safenumber)) {
-            Toast.makeText(getApplicationContext(),"please set saftnumber first",1).show();
+            Toast.makeText(getApplicationContext(),"please set safenumber first",1).show();
             return;
         }
 
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("saftnumber",safenumber);
+        editor.putString("safenumber",safenumber);
         editor.commit();
 
         Intent intent = new Intent(this,Setup4Activity.class);
