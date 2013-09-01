@@ -146,7 +146,7 @@ public class HomeActivity extends Activity {
 
                     dialog.dismiss();
                     //enter the interface
-                    Intent intent = new Intent(HomeActivity.this,Setup1Activity.class);
+                    Intent intent = new Intent(HomeActivity.this,LostFindActivity.class);
                     startActivity(intent);
 
 
