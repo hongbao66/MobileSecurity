@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".Setup1Activity">
+
+    <TextView
+        style="@style/text_content_style"
+        android:text="Sugeest you open Anit-Theft"/>
+
+    <TextView
+        style="@style/text_content_style"
+        android:gravity="center_horizontal"
+        android:textColor="#06F"
+        android:onClick="activeAdmin"
+        android:clickable="true"
+        android:background="@drawable/status_selector"
+        android:text="click me and open device super admin"/>
+
+    <CheckBox
+        android:id="@+id/cb_setup4_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Protect Status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dip"
+        >
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_normal"/>
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_normal"/>
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_normal"/>
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_selected"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/bind"/>
+
+        <Button
+            style="@style/button_pre_style" />
+
+        <Button
+            style="@style/button_next_style"
+            android:text="Finish"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

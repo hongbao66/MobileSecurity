@@ -146,6 +146,9 @@ public class HomeActivity extends Activity {
 
                     dialog.dismiss();
                     //enter the interface
+                    Intent intent = new Intent(HomeActivity.this,Setup1Activity.class);
+                    startActivity(intent);
+
 
                 } else {
                     Toast.makeText(getApplicationContext(),"password is wrong",1).show();

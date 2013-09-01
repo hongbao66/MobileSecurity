@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".Setup1Activity">
+
+    <TextView
+        style="@style/text_content_style"
+        android:text="Your Mobile Security Guard"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/btn_star_big_on"/>
+
+        <TextView
+            style="@style/text_content_style"
+            android:text="SIM change and alert" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/btn_star_big_on"/>
+
+        <TextView
+            style="@style/text_content_style"
+            android:text="GPS chase"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/btn_star_big_on"/>
+
+        <TextView
+            style="@style/text_content_style"
+            android:text="remote wrap data"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/btn_star_big_on"/>
+
+        <TextView
+            style="@style/text_content_style"
+            android:text="remote lock screen"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dip"
+        >
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_selected"/>
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_normal"/>
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_normal"/>
+
+        <ImageView
+            android:layout_width="20dip"
+            android:layout_height="20dip"
+            android:src="@drawable/btn_circle_normal"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/setup1"/>
+
+        <Button
+            style="@style/button_next_style"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
