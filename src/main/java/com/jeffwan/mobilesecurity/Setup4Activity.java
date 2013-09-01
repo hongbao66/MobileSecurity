@@ -2,12 +2,17 @@ package com.jeffwan.mobilesecurity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+
+import com.jeffwan.mobilesecurity.receiver.MyAdmin;
 
 public class Setup4Activity extends BaseSetupActivity {
     private CheckBox cb_setup4_status;
@@ -74,5 +79,15 @@ public class Setup4Activity extends BaseSetupActivity {
         overridePendingTransition(R.anim.trans_pre_in,R.anim.trans_pre_out);
     }
 
+
+    public void activeAdmin(View view) {
+        // Launch the activity to have the user enable our admin.
+        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+        ComponentName mDeviceAdminSample = new ComponentName(this, MyAdmin.class);
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdminSample);
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+               "Active Admin makes you better manager your phone");
+        startActivity(intent);
+    }
     
 }

@@ -23,11 +23,11 @@ public class LostFindActivity extends Activity {
         if (isSetup()) {
             Log.i(TAG,"Load normal interface");
             setContentView(R.layout.activity_lost_find);
-            tv_lostfind_number = (TextView) this.findViewById(R.id.tv_lostfind_number);
-            iv_lostding_status = (ImageView) this.findViewById(R.id.iv_lostfind_status);
-            tv_lostfind_number.setText(sp.getString("saftnumber",""));
-            boolean protecting = sp.getBoolean("protecting",false);
-            if (protecting) {
+                tv_lostfind_number = (TextView) this.findViewById(R.id.tv_lostfind_number);
+                iv_lostding_status = (ImageView) this.findViewById(R.id.iv_lostfind_status);
+                tv_lostfind_number.setText(sp.getString("safenumber",""));
+                boolean protecting = sp.getBoolean("protecting",false);
+                if (protecting) {
                 iv_lostding_status.setImageResource(R.drawable.lock);
             } else {
                 iv_lostding_status.setImageResource(R.drawable.unlock);
