@@ -34,6 +34,9 @@ public class SettingView extends RelativeLayout {
 
         //when system parse xml layout, already get all attrs in attrs object
         //mapping attrs array to our attrs array
+
+        //The reason we ues here because we can define the content in the layout instead of javacode setText
+        //how R.styleable.settingview generated?
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.setting_view);
 
         //get our data from layout xml
